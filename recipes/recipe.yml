@@ -31,6 +31,8 @@ modules:
         - kvantum
         - qt5ct
         - qt6ct
+        - lightdm
+        - lightdm-gtk-greeter
   - type: script
     snippets:
       # Install script to make AUR package easily
@@ -48,6 +50,10 @@ modules:
       # Fix bootc-image-builder not liking 2 dots in VERSION_ID for some reason
       - |
         sed -E -i "s/^(VERSION_ID=)(['\"]?)([0-9]{8}\.[0-9]+)\.([0-9]+)(['\"]?)/\\1\"\\3-\\4\"/" /etc/os-release
+  - type: systemd
+    system:
+      enabled:
+        - lightdm.service
   - type: signing
   - type: script
     snippets:
