@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-keyboard-shortcuts" version="1.0">
+  <property name="commands" type="empty">
+    <property name="default" type="empty">
+      <property name="Super_L" type="string" value="xfce4-popup-whiskermenu"/>
+      <property name="&lt;Super&gt;l" type="string" value="xflock4"/>
+    </property>
+  </property>
+</channel>
