@@ -3,7 +3,7 @@
 ![](assets/showcase.png)
 
 > [!IMPORTANT]  
-> This custom image is still WIP and in an alpha phase.
+> This custom image is still WIP and in an alpha phase, so only use this for testing.
 
 > [!IMPORTANT]  
 > For any theming issues, report here, don't report to the upstream developers.
