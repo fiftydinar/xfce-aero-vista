@@ -78,3 +78,5 @@ This image is based on the experimental work of [arch-bootc](https://github.com/
   - Using `mkinitcpio` and others might work with some modifications, but upstream primarily uses `dracut`, which is also used here
 - Secure boot doesn't work and is unsupported
   - For the same reason as 1 + unsigned kernel by default
+- Update sizes are big (around 2GB)
+  - This is because `bootc` doesn't have support for more efficient delta updates, so it downloads almost full image. Provided auto-update `bootc` timer won't trigger if the network connection is metered, so you can set that in network settings to disable those updates. Or disable the timer by issuing `systemctl --system disable bootc-fetch-apply-updates.timer` in terminal.
