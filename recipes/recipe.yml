@@ -70,6 +70,9 @@ modules:
         - gvfs
         # CLI editor
         - nano
+        # AppImage thumbnailer dependencies
+        - squashfuse
+        - imagemagick
         # Debugging
         - strace
   - type: script
@@ -77,7 +80,7 @@ modules:
       # Install script to make AUR package easily
       - "wget --retry-connrefused --tries=30 --directory-prefix=/tmp/arch-tools/ https://raw.githubusercontent.com/pkgforge-dev/Anylinux-AppImages/refs/heads/main/useful-tools/make-aur-package.sh"
       - "chmod +x /tmp/arch-tools/make-aur-package.sh"
-      # Install patched xfdesktop and xfce4-screensaver (for default background), compiz, emerald, networkmanager-dispatcher-chrony, gtk-nocsd-git, spice-guest-tools-windows
+      # Install patched xfdesktop and xfce4-screensaver (for default background), compiz, emerald, networkmanager-dispatcher-chrony, gtk-nocsd-git, spice-guest-tools-windows, dwarfs
       ## Install xfdesktop
       - |
         pacman -Rns --noconfirm xfdesktop && cd /tmp/arch-tools && PRE_BUILD_CMDS="sed -i 's|--prefix=/usr|--prefix=/usr --with-default-backdrop-filename=/usr/share/backgrounds/frosted-glass.webp|g' ./PKGBUILD" /tmp/arch-tools/make-aur-package.sh --archlinux-pkg xfdesktop
@@ -95,11 +98,17 @@ modules:
       - "cd /tmp/arch-tools && /tmp/arch-tools/make-aur-package.sh emerald"
       ## Install networkmanager-dispatcher-chrony
       - "cd /tmp/arch-tools && /tmp/arch-tools/make-aur-package.sh networkmanager-dispatcher-chrony"
+      ## Install gtk-nocsd
       - |
         cd /tmp/arch-tools && PRE_BUILD_CMDS="sed -i 's|LIBDIR=\"/usr/lib\"|LIBDIR=\"/usr/lib\" NOOPT=1|' ./PKGBUILD" /tmp/arch-tools/make-aur-package.sh gtk-nocsd-git
+      ## Install spice-guest-tools-windows
       - "cd /tmp/arch-tools && /tmp/arch-tools/make-aur-package.sh spice-guest-tools-windows"
+      ## Install dwarfs (for AppImage thumbnailer)
+      - "cd /tmp/arch-tools && /tmp/arch-tools/make-aur-package.sh dwarfs"
       # Cleanup
       - "rm -r /tmp/arch-tools/"
+      # Install AppImage Thumbnailer (sat)
+      - "wget --retry-connrefused --tries=30 -O /usr/bin/sat https://raw.githubusercontent.com/Samueru-sama/simple-appimage-thumbnailer/refs/heads/main/sat.sh && chmod +x /usr/bin/sat && wget --retry-connrefused --tries=30 --directory-prefix=/usr/share/thumbnailers https://raw.githubusercontent.com/Samueru-sama/simple-appimage-thumbnailer/refs/heads/main/simple-appimage-thumbnailer.thumbnailer"
       # Sudo for wheel group # https://github.com/ExistingPerson08/arch-base
       - |
         sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers || echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
