@@ -68,6 +68,7 @@ modules:
         - xfce4-xkb-plugin
         - xdg-user-dirs
         - gvfs
+        - zram-generator
         # CLI editor
         - nano
         # AppImage thumbnailer dependencies
