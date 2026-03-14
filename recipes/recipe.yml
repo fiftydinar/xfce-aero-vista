@@ -4,6 +4,10 @@ base-image: ghcr.io/bootcrew/arch-bootc
 image-version: latest
 
 modules:
+  - type: script
+    snippets:
+      # Initialize pacman-key to generate a default secret key in cases a 3rd party repo is used
+      - "pacman-key --init"
   - type: pacman
     install:
       packages:
