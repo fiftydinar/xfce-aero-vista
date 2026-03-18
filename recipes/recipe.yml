@@ -195,6 +195,6 @@ modules:
         dracut --force "$(find /usr/lib/modules -maxdepth 1 -type d | grep -v "\.img$" | tail -n 1)"/initramfs.img
       # Show all installed packages sorted by size
       - |
-        pacman -Qi | awk -F': ' '/Name/ {n=$2} /Installed Size/ {s=$2} n && s {print n, s; n=s=""}' | column -t | grep MiB | sort -nk 2
+        LC_ALL=C pacman -Qi | awk '/^Name/ {pkg=$3} /^Installed Size/ {s=$4; u=$5; if(u=="KiB") s/=1024; else if(u=="GiB") s*=1024; printf "%.2f MiB %s\n", s, pkg}' | sort -n
       # Clear pacman cache, saves about 800MB
       - "rm -r /usr/lib/sysimage/cache/pacman"
