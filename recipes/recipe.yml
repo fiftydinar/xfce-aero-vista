@@ -85,6 +85,9 @@ modules:
         - bc
         # Debugging
         - strace
+        - libva-utils
+        - vulkan-tools
+        - clinfo
   - type: script
     snippets:
       # Install script to make AUR package easily
