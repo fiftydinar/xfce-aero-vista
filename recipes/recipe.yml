@@ -86,6 +86,7 @@ modules:
         # Debugging
         - strace
         - libva-utils
+        - mesa-utils
         - vulkan-tools
         - clinfo
   - type: script
