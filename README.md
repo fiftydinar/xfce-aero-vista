@@ -68,7 +68,7 @@ Now that we know what's the theming base and other defaults, I'll highlight what
 
 ## Caveats
 
-This image is based on the experimental work of [arch-bootc](https://github.com/bootcrew/arch-bootc) base image, so some issues might arise.  
+This image is based on the experimental work of [arch-bootc](https://github.com/fiftydinar/arch-bootc) base image, so some issues might arise.  
 
 - GRUB bootloader cannot be updated
   - It will stay on the same version basically forever, because [bootupd](https://github.com/coreos/bootupd) only works on Fedora and CoreOS based distributions.
